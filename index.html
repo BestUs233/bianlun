@@ -46,6 +46,26 @@
 				BUY K.O. NOW!!!
 			</a>
 		</section>
+		
+		<div class="container">
+		  <div class="progress-container">
+		    <div class="progress-bar">
+		      <div class="progress red" id="left-progress"></div>
+		    </div>
+		    <button class="button1" onclick="increaseProgress('left')">Click</button>
+		    <p style="color: #fff; margin-top: 10px;">Clicks: <span id="left-clicks">1000</span></p>
+		  </div>
+		
+		  <div class="progress-container">
+		    <div class="progress-bar">
+		      <div class="progress blue" id="right-progress"></div>
+		    </div>
+		    <button class="button2" onclick="increaseProgress('right')">Click</button>
+		    <p style="color: #fff;margin-top: 10px;">Clicks: <span id="right-clicks">1000</span></p>
+		  </div>
+		</div>
+		
+		
 		<section id="about">
 			<div  style="color: #fff;">
 				<h1 style="color: #fff;">ABOUT</h1>
@@ -128,3 +148,33 @@
 		<script type="module" src="static/js/main.js"></script>
 	</body>
 </html>
+
+<script>
+  let leftProgress = 100;
+  let rightProgress = 100;
+  let leftClicks = 1000;
+  let rightClicks = 1000;
+
+  function decreaseProgress() {
+    if (leftProgress > 0) leftProgress -= 10;
+    if (rightProgress > 0) rightProgress -= 10;
+    document.getElementById('left-progress').style.width = leftProgress + '%';
+    document.getElementById('right-progress').style.width = rightProgress + '%';
+  }
+
+  function increaseProgress(side) {
+    if (side === 'left') {
+      if (leftProgress < 100) leftProgress += 2;
+      leftClicks += 1;
+      document.getElementById('left-progress').style.width = leftProgress + '%';
+      document.getElementById('left-clicks').innerText = leftClicks;
+    } else {
+      if (rightProgress < 100) rightProgress += 2;
+      rightClicks += 1;
+      document.getElementById('right-progress').style.width = rightProgress + '%';
+      document.getElementById('right-clicks').innerText = rightClicks;
+    }
+  }
+
+  setInterval(decreaseProgress, 1000);
+</script>
