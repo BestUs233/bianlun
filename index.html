@@ -24,9 +24,20 @@
 			<div class="hero-text" style="color: #fff;">
 				First Debate. Fundamental blockchain innovation surpasses meme coin hype, reclaiming its rightful place as the core technology of the revolution.
 			</div>
+			
+			<div class="countdown-container">
+			  <div  style="color: #fff;" class="title">The First Debate Start</div>
+			  <div id="countdown" class="timer">
+			    <div id="days" class="time-box">0 D</div>
+			    <div id="hours" class="time-box">0 H</div>
+			    <div id="minutes" class="time-box">0 M</div>
+			    <div id="seconds" class="time-box">0 S</div>
+			  </div>
+			</div>
+			
 			<div class="hero-links">
 				<!-- pump -->
-				<a href="https://www.pump.fun/EcPEmLMLXjZ4R5pS6SSQFWqSfdRhkUv73E1zHgcupump">
+				<a href="#">
 					<img class="icon" src="static/picture/dexscreener.png">
 				</a>
 				
@@ -42,7 +53,7 @@
 			</div>
 			
 			<!-- pump -->
-			<a href="https://www.pump.fun/EcPEmLMLXjZ4R5pS6SSQFWqSfdRhkUv73E1zHgcupump" class="buy-button">
+			<a href="#" class="buy-button">
 				BUY K.O. NOW!!!
 			</a>
 		</section>
@@ -107,7 +118,7 @@
 					</div>
 					<div class="htb-text">
 						once you have enough SOL, connect to <a
-							href="https://www.pump.fun/EcPEmLMLXjZ4R5pS6SSQFWqSfdRhkUv73E1zHgcupump">pump.fun</a> , when
+							href="https://www.pump.fun/BUXkKoi1h2p2rNPBnKJ5xx2oQnEawCAGPsHaJinoMuNp">pump.fun</a> , when
 						your Wallet prompts you for a wallet signature, sig in. search for and select First Debate, and
 						confirmn.
 					</div>
@@ -177,4 +188,32 @@
   }
 
   setInterval(decreaseProgress, 1000);
+  
+ function getNextNineAM() {
+   const now = new Date();
+   let nextNineAM = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 9, 0, 0));
+   if (now >= nextNineAM) {
+     nextNineAM.setUTCDate(nextNineAM.getUTCDate() + 1);
+   }
+   return nextNineAM;
+ }
+ 
+ function updateCountdown() {
+   const now = new Date();
+   const target = getNextNineAM();
+   const totalSeconds = Math.floor((target - now) / 1000);
+ 
+   const days = Math.floor(totalSeconds / 86400);
+   const hours = Math.floor((totalSeconds % 86400) / 3600);
+   const minutes = Math.floor((totalSeconds % 3600) / 60);
+   const seconds = Math.floor(totalSeconds % 60);
+ 
+   document.getElementById('days').innerText = `${days}D`;
+   document.getElementById('hours').innerText = `${hours}H`;
+   document.getElementById('minutes').innerText = `${minutes}M`;
+   document.getElementById('seconds').innerText = `${seconds}S`;
+ }
+ 
+ setInterval(updateCountdown, 1000);
+ updateCountdown(); // Initial call to set the countdown immediately
 </script>
