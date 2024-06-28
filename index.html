@@ -167,25 +167,65 @@
   let rightClicks = 1000;
 
   function decreaseProgress() {
-    if (leftProgress > 0) leftProgress -= 10;
-    if (rightProgress > 0) rightProgress -= 10;
+    let randomDecreaseLeft = Math.floor(Math.random() * 9) + 2; 
+    let randomDecreaseRight = Math.floor(Math.random() * 9) + 2; 
+
+    if (leftProgress > 0) leftProgress -= randomDecreaseLeft;
+    if (rightProgress > 0) rightProgress -= randomDecreaseRight;
+
+    if (leftProgress < 0) leftProgress = 0;
+    if (rightProgress < 0) rightProgress = 0;
+
     document.getElementById('left-progress').style.width = leftProgress + '%';
     document.getElementById('right-progress').style.width = rightProgress + '%';
   }
 
   function increaseProgress(side) {
+    let randomIncrease = Math.floor(Math.random() * 9) + 1; 
     if (side === 'left') {
       if (leftProgress < 100) leftProgress += 2;
+      if (rightProgress < 100) rightProgress += randomIncrease;
       leftClicks += 1;
       document.getElementById('left-progress').style.width = leftProgress + '%';
       document.getElementById('left-clicks').innerText = leftClicks;
+      document.getElementById('right-progress').style.width = rightProgress + '%';
     } else {
       if (rightProgress < 100) rightProgress += 2;
+      if (leftProgress < 100) leftProgress += randomIncrease;
       rightClicks += 1;
       document.getElementById('right-progress').style.width = rightProgress + '%';
       document.getElementById('right-clicks').innerText = rightClicks;
+      document.getElementById('left-progress').style.width = leftProgress + '%';
     }
   }
+
+  setInterval(decreaseProgress, 1000);
+	
+  // let leftProgress = 100;
+  // let rightProgress = 100;
+  // let leftClicks = 1000;
+  // let rightClicks = 1000;
+
+  // function decreaseProgress() {
+  //   if (leftProgress > 0) leftProgress -= 10;
+  //   if (rightProgress > 0) rightProgress -= 10;
+  //   document.getElementById('left-progress').style.width = leftProgress + '%';
+  //   document.getElementById('right-progress').style.width = rightProgress + '%';
+  // }
+
+  // function increaseProgress(side) {
+  //   if (side === 'left') {
+  //     if (leftProgress < 100) leftProgress += 2;
+  //     leftClicks += 1;
+  //     document.getElementById('left-progress').style.width = leftProgress + '%';
+  //     document.getElementById('left-clicks').innerText = leftClicks;
+  //   } else {
+  //     if (rightProgress < 100) rightProgress += 2;
+  //     rightClicks += 1;
+  //     document.getElementById('right-progress').style.width = rightProgress + '%';
+  //     document.getElementById('right-clicks').innerText = rightClicks;
+  //   }
+  // }
 
   setInterval(decreaseProgress, 1000);
   
